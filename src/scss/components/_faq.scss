@@ -1,0 +1,72 @@
+@use "../abstracts/" as *;
+.faq{
+    position: relative;
+     &__inner{
+        display: grid;
+        background-color: $faq-bg-color;
+        border-radius: $size-6;
+        @include responsive-spacing(padding, $faq-inner-padding);
+        @include responsive-spacing(row-gap, $faq-inner-row-gap);
+     }
+
+     &__header{
+        display: flex;
+        gap: $size-6;
+        align-items: center;
+        img{
+            width: 20.99px;
+            height: 20.99px;
+        }
+     }
+
+     &__list{
+        list-style: none;
+     }
+
+     &__item{
+        position: relative;
+
+        &:not(:last-child)::after {
+            content: "";
+            display: block;
+            height: 1px;
+            background-color :$faq-divider-color; // o altro colore divisore
+            margin: 20px 0;
+            @include mq(large){
+                margin: 24px 0;
+            }
+        }
+
+        &-question{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap:  $size-6;
+            &:hover{
+                cursor: pointer;
+                h2{
+                    color: $color-accent-400;
+                }
+            }
+        }
+
+        &-answer{
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 500ms;
+            p{
+                overflow: hidden;
+                transition: margin-block-start 500ms;
+            }
+
+            &.expanded{
+                grid-template-rows: 1fr;
+
+                p{
+                    margin-block-start: $size-6;
+                }
+            }
+        }
+     }
+
+}

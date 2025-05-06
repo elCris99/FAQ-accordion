@@ -1,0 +1,77 @@
+@use "sass:meta";
+@use "sass:math";
+@use "sass:map";
+@use "sass:list";
+@use "breakpoints" as *;
+@use "tokens" as *;
+
+@mixin text-preset($preset){
+  font-size: var(--#{$preset}-fs);
+  line-height: var(--#{$preset}-lh);
+  letter-spacing: var(--#{$preset}-ls);
+  font-family: var(--#{$preset}-ff);
+  font-weight: var(--#{$preset}-fw);
+}
+
+@mixin mq($size) {
+  @if map.has-key($breakpoints, $size) {
+    $breakpoint: map.get($breakpoints, $size);
+    @media screen and (min-width: $breakpoint) {
+      @content;
+    }
+  } @else if meta.type-of($size) == number {
+    @if math.is-unitless($size) {
+      @error 'when using a number with @mq() make sure to include a unit';
+    } @else {
+      @media screen and (min-width: $size) {
+        @content;
+      }
+    }
+  } @else {
+    @error 'the keyword #{$size} is not in the $breakpoints map';
+  }
+}
+
+@mixin heading($text-preset, $color: $heading-color-default) {
+  color: $color;
+  text-transform: $heading-text-transform;
+
+  @include text-preset($text-preset);
+}
+
+@mixin responsive-spacing($property, $values...) {
+  @if meta.type-of(list.nth($values, 1)) == "map" {
+    @each $bp, $value in list.nth($values, 1) {
+      @if $bp == small {
+        &{
+          #{$property}: $value;
+        }
+      } @else {
+        @include mq($bp) {
+          #{$property}: $value;
+        }
+      }
+    }
+  } @else {
+    // Metodo classico con lista
+  $small: list.nth($values, 1);
+  $medium: if(list.length($values)>1, list.nth($values,2),null);
+  $large: if(list.length($values)>2, list.nth($values, 3), null);
+
+    &{
+      #{$property}: $small;
+    }
+    
+    @if $medium {
+      @include mq(medium) {
+        #{$property}: $medium;
+      }
+    }
+    
+    @if $large {
+      @include mq(large) {
+        #{$property}: $large;
+      }
+    }
+  }
+}

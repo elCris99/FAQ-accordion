@@ -1,0 +1,108 @@
+@use "sass:color";
+@use "../abstracts" as *;
+
+.nav {
+  background-color: $site-header-background-color;
+  list-style: none;
+  font-family: $navigation-font-family;
+  font-weight: $navigation-font-weight;
+
+  display: flex;
+  gap: $navigation-gap;
+  // --flex-column-gap: #{$navigation-gap};
+
+  a {
+    color: $navigation-color;
+    text-decoration: $navigation-link-text-decoration;
+
+    &:is(:hover, :focus) {
+      color: $navigation-color-hover;
+    }
+  }  
+}
+
+.nav[data-nav="responsive-sidebar"]{
+  flex-direction: column;
+  transition: right 300ms ease-out;
+
+  position: fixed;
+  top: 0;
+  right: -100%;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+
+  &.show{
+    right: 0;
+
+    & ~ #overlay{
+      display: block;
+
+      @include mq(medium){
+        display: none;
+      }
+    }
+  }
+
+  li{
+    width: 100%;
+  }
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $navigation-link-color;
+    text-decoration: $navigation-link-text-decoration;
+    padding: $navigation-link-padding;
+    transition: background-color 150ms ease;
+
+    &:is(:hover, :focus) {
+      color: $navigation-color-hover;
+      background-color: $navigation-link-background-color-hover;
+    }
+  }
+
+  .nav__header{
+    color: $navigation-header-color;
+    background-color: $navigation-header-background-color;
+    display: flex;
+    justify-content: space-between;
+      
+    &-logo{
+        color: $navigation-header-color;
+    }
+
+    .close-icon{
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='black'%3E%3Cpath d='m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z'/%3E%3C/svg%3E");
+      background-position: center;
+      background-repeat: no-repeat;
+
+      &:is(:hover, :focus) {
+        background-color: $navigation-link-background-color-hover;
+        }
+    }
+  }
+
+  @include mq(small){
+    max-width: 50%;
+  }
+
+  @include mq(medium){
+    position: static;
+    flex-direction: row;
+    align-items: center;
+
+    .only-open-nav{
+      display: none;
+    }
+  }
+}
+
+#overlay{
+  background-color: rgba(0,0,0,0.5);
+  position: fixed;
+  inset: 0;
+  z-index: 9;
+  display: none;
+}

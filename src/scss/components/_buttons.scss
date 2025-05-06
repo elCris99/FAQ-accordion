@@ -1,0 +1,16 @@
+@use "../abstracts" as *;
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  padding: $button-padding;
+  border: $button-border;
+  transition: 275ms ease;
+  flex-shrink: 0;
+  width: 1.875rem;
+  height: 1.875rem;
+  background-color: $button-background-color;
+}

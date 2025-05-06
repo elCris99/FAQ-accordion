@@ -1,0 +1,134 @@
+@use "colors" as *;
+@use "typography" as *;
+@use "sizes" as *;
+
+$active-theme: $default;
+$enable-media-query-dark-mode: false;
+
+// Contextual
+$color-text-default: $color-neutral-700;
+$color-background-default: $color-primary-100;
+$color-text-interactive-default: $color-primary-400;
+$color-text-interactive-hover: $color-primary-500;
+
+// set to 0 to disable
+$letter-spacing-loose: 0;
+
+$border-radius-1: $size-2;
+$border-radius-2: $size-4;
+
+$box-shadow-1: 0px 6px 5px rgb(0, 0, 0, 0.012),
+  0px 22px 18px rgb(0, 0, 0, 0.018), 0px 100px 80px rgb(0, 0, 0, 0.03);
+
+$box-shadow-2: 0px 6px 5px rgb(0, 0, 0, 0.016),
+  0px 22px 18px rgb(0, 0, 0, 0.024), 0px 100px 80px rgb(0, 0, 0, 0.04);
+
+$box-shadow-3: 0px 6px 5px rgb(0, 0, 0, 0.02), 0px 22px 18px rgb(0, 0, 0, 0.03),
+  0px 100px 80px rgb(0, 0, 0, 0.05);
+
+$box-shadow-4: 0px 6px 5px rgb(0, 0, 0, 0.03), 0px 22px 18px rgb(0, 0, 0, 0.042),
+  0px 100px 80px rgb(0, 0, 0, 0.07);
+
+$box-shadow-5: 0px 6px 5px rgb(0, 0, 0, 0.04), 0px 22px 18px rgb(0, 0, 0, 0.06),
+  0px 100px 80px rgb(0, 0, 0, 0.1);
+
+// body
+
+$body-text-preset: "set-1";
+$body-font-weight: $font-weight-default;
+$body-text-color: $color-text-default;
+$body-background-color: $color-background-default;
+
+$link-color: $color-text-interactive-default;
+$link-color-hover: $color-text-interactive-hover;
+
+
+$heading-color-default: $color-neutral-900;
+$heading-text-transform: none;
+
+$heading-1-text-prexet: "set-heading-1";
+$heading-1-color: $heading-color-default;
+$heading-2-text-prexet: "set-heading-2";
+$heading-2-color: $heading-color-default;
+
+
+// layout
+$grid-gap: $size-6;
+$flex-group-gap: $size-4;
+$flow-space-1: $size-6;
+$flow-space-2: $size-8;
+
+$hero-padding-block: clamp(15rem, 15vh, 20rem);
+$section-padding-block: clamp(5rem, 10vh, 6rem);
+
+$container-min-margin-inline: $size-6;
+$container-max-width: 37.5rem;
+$container-max-width-narrow: 40rem;
+$container-max-width-wide: 75rem;
+
+// site header
+$site-header-background-color: $color-neutral-900;
+$site-header-color: $color-neutral-200;
+$site-header-padding: $size-2 0;
+$site-header-margin: 0;
+$site-header-jusitifcation-small-screens: space-between;
+$site-header-jusitifcation-large-screens: space-between;
+$site-header-alignment: center;
+
+//navigation
+$navigation-color: $site-header-color;
+$navigation-color-hover: $color-neutral-000;
+$navigation-font-size: $font-size-400;
+$navigation-gap: $size-9;
+$navigation-link-text-decoration: none;
+$navigation-font-family: $font-family-base;
+$navigation-font-weight: $body-font-weight;
+
+$navigation-header-background-color: $color-neutral-000;
+$navigation-header-color: $color-neutral-1000;
+
+$navigation-link-color: $navigation-color;
+$navigation-link-color-hover: $navigation-color-hover;
+$navigation-link-background-color: $site-header-background-color;
+$navigation-link-background-color-hover: $color-neutral-800;
+$navigation-link-text-decoration: none;
+$navigation-link-padding: 1em 2em;
+
+// site footer
+$footer-background-color: $color-primary-300;
+$footer-text-color: $color-primary-900;
+$footer-link-color: $color-neutral-100;
+$footer-link-color-hover: $color-primary-200;
+$footer-link-font-family: $font-family-accent;
+$footer-link-text-decoration: none;
+
+//Lists
+$ul-bullet-color: $body-text-color;
+$ul-bullet-width: $size-4;
+$ul-bullet-margin-right: $size-3;
+$ol-li-padding-left: $size-7;
+
+
+// cards
+$card-flow-spacing: $size-2;
+$card-padding: $size-8;
+$card-shadow: $box-shadow-1;
+$card-border-radius: $border-radius-2;
+$card-background-default: $color-primary-100;
+$card-color-default: $body-text-color;
+$card-heading-color-default: $card-color-default;
+
+$background-padding-top: (small:142.5px, large:167.5px);
+
+//FAQ
+$faq-bg-color: $color-neutral-000;
+$faq-inner-padding: (small: $size-6,  large: $size-9);
+$faq-inner-row-gap: (small: $size-6,  large: $size-8);
+
+$faq-divider-color: $color-primary-100;
+
+// buttons
+$button-background-color: $faq-bg-color;
+$button-text-transform: uppercase;
+$button-padding: 0;
+$button-border: none;

@@ -1,0 +1,12 @@
+@use "sass:map";
+@use "../abstracts/" as *;
+
+@each $screen-size, $size-map in $text-presets{
+    @if $screen-size == "small"{
+        @each $preset-name, $preset-value in $size-map{
+            .text-preset-#{$preset-name}{
+                @include text-preset($preset-name)
+            }
+        }
+    }
+}

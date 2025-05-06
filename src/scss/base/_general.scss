@@ -1,0 +1,17 @@
+@use "../abstracts/" as *;
+
+body {
+  @include text-preset($body-text-preset);
+  color: $body-text-color;
+  background-color: $body-background-color;
+  font-weight: $body-font-weight;
+}
+
+a {
+  color: $link-color;
+}
+
+a:is(:hover, :focus) {
+  color: $link-color-hover;
+}
+

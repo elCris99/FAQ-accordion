@@ -1,0 +1,43 @@
+@use "../abstracts/" as *;
+
+
+.ul{
+    list-style: none;
+
+    li{
+        display: flex;
+        align-items: center;
+    }
+
+    li::before{
+        content: "•"; /* Usa un punto personalizzato */
+        color: $ul-bullet-color;  /* Cambia colore se vuoi */
+        font-size: 1.5em;
+        display: inline-block;
+        align-items: center;
+        width: 1rem; /* Controlla la distanza fissa tra il punto e il testo, valutare l'uso di "em" */
+        margin-right: $ul-bullet-margin-right; /* Controlla la distanza tra il punto e il testo */
+        line-height: 0.1;
+        transform: translateY(-50%);
+    }
+}
+
+.ol {
+    list-style: none; 
+    counter-reset: my-counter; /* Inizializza il contatore */
+
+    li {
+        counter-increment: my-counter; /* Incrementa il contatore */
+        position: relative;
+        padding-left: $ol-li-padding-left; /* Allontana il testo dal numero */
+
+        &::before {
+            content: counter(my-counter) "."; /* Aggiunge il numero manualmente */
+            position: absolute;
+            left: 0;
+            /* width: 20px; */ /* Controlla la distanza tra numero e testo */
+            /* text-align: right; */
+            font-weight: bold;
+        }
+    }
+}

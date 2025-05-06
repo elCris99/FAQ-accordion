@@ -1,0 +1,57 @@
+@use "sass:map";
+@use "../abstracts" as *;
+
+
+:root {
+
+  @each $size-name, $size-value in $font-sizes {
+    --fs-#{$size-name}: #{$size-value};
+  }
+
+  @each $size-name, $size-value in $line-heights{
+    --lh-#{$size-name}: #{$size-value};
+  }
+
+  @each $size-name, $size-value in $letter-spacings{
+    --ls-#{$size-name}: #{$size-value};
+  }
+
+  @each $color, $shade-map in $active-theme {
+    @each $shade, $value in $shade-map {
+      --#{$color}-#{$shade}: #{$value};
+    }
+  }
+
+  @if ($enable-media-query-dark-mode) {
+    @media (prefers-color-scheme: dark) {
+      @each $color, $shade-map in $dark {
+        @each $shade, $value in $shade-map {
+          --#{$color}-#{$shade}: #{$value};
+        }
+      }
+    }
+  }  
+
+  @each $screen-size, $size-map in $text-presets {
+    @if $screen-size == "small" {
+      @each $size-name, $values in $size-map {
+        --#{$size-name}-fs: #{map.get($values, "fs")};
+        --#{$size-name}-lh: #{map.get($values, "lh")};
+        --#{$size-name}-ls: #{map.get($values, "ls")};
+        --#{$size-name}-ff: #{map.get($values, "ff")};
+        --#{$size-name}-fw: #{map.get($values, "fw")};
+      }
+    } @else {
+      @include mq($screen-size) {
+        @each $size-name, $values in $size-map {
+          --#{$size-name}-fs: #{map.get($values, "fs")};
+          --#{$size-name}-lh: #{map.get($values, "lh")};
+          --#{$size-name}-ls: #{map.get($values, "ls")};
+          --#{$size-name}-ff: #{map.get($values, "ff")};
+          --#{$size-name}-fw: #{map.get($values, "fw")};
+        }
+      }
+    }
+  }
+
+}
